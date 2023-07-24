@@ -1,0 +1,21 @@
+.custom-image {
+ /* Reduce the width of the image */
+    height:500px; /* Set the desired height of the image */
+    object-fit: fill; /* Maintain aspect ratio and cover the entire container */
+}
+
+.pl-0{
+    padding-left: 0px;
+}
+
+.pr-0{
+    padding-right: 0px;
+}
+.bgImage {
+    background-image:
+    url(
+  "https://c4.wallpaperflare.com/wallpaper/707/220/899/gradient-blue-pink-abstract-art-wallpaper-preview.jpg");
+    background-size: cover;
+    height: 100vh;
+    background-repeat:no-repeat;
+  }
