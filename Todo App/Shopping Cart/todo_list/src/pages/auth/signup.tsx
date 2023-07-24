@@ -2,6 +2,7 @@ import React from "react";
 import "../../css/main.css"; // Import your custom CSS file
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faUser ,faKey} from "@fortawesome/free-solid-svg-icons";
+import {Controller,useForm} from "react-hook-form"
 import {
   Container,
   Row,
@@ -12,6 +13,13 @@ import {
   Button,
 } from "react-bootstrap";
 const Signup = () => {
+  const { register, handleSubmit,control,  formState: { errors } } = useForm({
+    defaultValues:{
+      firstName:""
+    }
+  });
+  console.log(errors.firstName)
+  const formSubmit = (data) => {console.log(data)};
   return (
     <>
       <Container
@@ -31,19 +39,21 @@ const Signup = () => {
                 ></img>
               </Col>
               <Col md={6} className="    rounded-end border-start-0">
-                <Form>
+                <Form onSubmit={handleSubmit(formSubmit)}>
                   <Row className="g-2 mt-2">
                     <Col md={6}>
-                      <FloatingLabel
-                        controlId=""
-                        label="First name"
-                      >
-                        <Form.Control
-                          type="text"
-                          name="firstName"
-                          placeholder="First name"
-                        />
-                      </FloatingLabel>
+                      <Controller 
+                        name ="firstName"
+                        control = {control} 
+                        rules = {{required: true}}
+                        render ={({field})=>(
+                          
+                        <FloatingLabel controlId="" label="First name" ><Form.Control  isInvalid={(errors.firstName)} type="text"   {...field}  placeholder="First name"/> </FloatingLabel> )}/>
+                        
+                <Form.Control.Feedback type="invalid">
+                  First Name is required
+                </Form.Control.Feedback>
+              
                     </Col>
                     <Col md={6}>
                       <FloatingLabel
@@ -138,7 +148,7 @@ const Signup = () => {
                   </Row>
                   <Row className="g-2 mt-2">
                     <Col md={12} className="d-grid">
-                      <Button variant="primary" type="button">
+                      <Button variant="primary" type="submit">
                         Sign Up
                       </Button>
                     </Col>
