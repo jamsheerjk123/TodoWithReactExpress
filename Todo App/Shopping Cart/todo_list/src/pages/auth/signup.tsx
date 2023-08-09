@@ -1,8 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import "../../css/main.css"; // Import your custom CSS file
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faUser ,faKey} from "@fortawesome/free-solid-svg-icons";
 import {Controller,useForm} from "react-hook-form"
+
+
+
 import {
   Container,
   Row,
@@ -13,6 +17,10 @@ import {
   Button,
 } from "react-bootstrap";
 const Signup = () => {
+  const [values, setValues] = useState([25, 75]);
+  const handleSliderChange = (newValues) => {
+    setValues(newValues);
+  };
   const { register, handleSubmit,control,  formState: { errors } } = useForm({
     defaultValues:{
       firstName:""
@@ -35,7 +43,7 @@ const Signup = () => {
                 <img
                   src="https://entrackr.com/storage/2020/03/flipkart-grocery-image.jpg"
                   alt="company logo"
-                  className="img-fluid custom-image rounded-start  "
+                  className="img-fluid custom-image rounded-start"
                 ></img>
               </Col>
               <Col md={6} className="    rounded-end border-start-0">
@@ -46,14 +54,12 @@ const Signup = () => {
                         name ="firstName"
                         control = {control} 
                         rules = {{required: true}}
-                        render ={({field})=>(
+                        render ={({field})=>(<>
                           
-                        <FloatingLabel controlId="" label="First name" ><Form.Control  isInvalid={(errors.firstName)} type="text"   {...field}  placeholder="First name"/> </FloatingLabel> )}/>
-                        
-                <Form.Control.Feedback type="invalid">
-                  First Name is required
-                </Form.Control.Feedback>
-              
+                        <FloatingLabel controlId="firstName" label="First name" ><Form.Control   type="text"   {...field}  placeholder="First name"/> 
+                        </FloatingLabel>                        
+                         </>)}/>
+                         {errors.firstName && <span className="text-danger">errors</span>}            
                     </Col>
                     <Col md={6}>
                       <FloatingLabel

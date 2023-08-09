@@ -1,6 +1,7 @@
 import React from 'react'
 import ToDoHeader from '../../components/todoHeader'
 import axios from "axios"
+
 import { useState } from 'react'
 import { useEffect } from 'react'
 
@@ -25,9 +26,14 @@ function Home() {
     allTasks()
   },[])
   return (
+    <>
     <div>
         <ToDoHeader tasks ={tasks} taskFn = {allTasks}   />
     </div>
+    <br></br>
+
+  
+    </>
   )
 }
 
